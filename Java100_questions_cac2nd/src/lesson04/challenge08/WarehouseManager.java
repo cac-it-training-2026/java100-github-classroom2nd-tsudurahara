@@ -53,13 +53,44 @@ public class WarehouseManager {
 
 		int[] ABKosanArray1 = new int[5];
 		int[] ABKosanArray2 = new int[5];
-
+		int intputNum = 0;//袋に入れる数字を入れるやつ
+		boolean loopFlag = false;
 
 		//ここに重複チェックおよび値の代入処理を記述する①(1～5)
+		for (int i = 0; i < ABKosanArray1.length; i++) {//袋に数字を入れたらiが進む
+			do {//数が重複してたらここから繰り返す
+				loopFlag = false;
+				intputNum = (int) (Math.random() * 10) % 5 + 1;//袋に入れる数字を乱数で決める
 
+				for (int j = 0; j < ABKosanArray1.length; j++) {//すでに同じ数があるかの判定
+					if (ABKosanArray1[j] == intputNum) {//ここでjで０～４を順に確認する
+						loopFlag = true;//被ってたらフラグをtrueにする
+						break;//forから出る
+					}
+				}
+			} while (loopFlag);//フラグがfalseならこの下　そうでないなら乱数からやり直し
+
+			ABKosanArray1[i] = intputNum;//数字をぶち込む
+
+		}
 
 		//ここに重複チェックおよび値の代入処理を記述する②(6～10)
+		for (int i = 0; i < ABKosanArray2.length; i++) {//袋に数字を入れたらiが進む
+			do {//数が重複してたらここから繰り返す
+				loopFlag = false;
+				intputNum = (int) (Math.random() * 10) % 5 + 6;//袋に入れる数字を乱数で決める
 
+				for (int j = 0; j < ABKosanArray2.length; j++) {//すでに同じ数があるかの判定
+					if (ABKosanArray2[j] == intputNum) {//ここでjで０～４を順に確認する
+						loopFlag = true;//被ってたらフラグをtrueにする
+						break;//forから出る
+					}
+				}
+			} while (loopFlag);//フラグがfalseならこの下　そうでないなら乱数からやり直し
+
+			ABKosanArray2[i] = intputNum;//数字をぶち込む
+
+		}
 
 		System.out.println("E主任：");
 		System.out.println("AB興産から新たに預かった荷物と以前から預かっている荷物の");
@@ -88,11 +119,31 @@ public class WarehouseManager {
 		System.out.println("E主任：");
 		System.out.println("その二つの荷物を奇数群、偶数群で入れ替えてください。\n");
 
-
-
 		//ここに奇数群(ABKosanArray1)と偶数群(ABKosanArray2)に振り分ける処理を記述する。
+		int[] kisu = new int[5];
+		int[] gusu = new int[5];
 
+		int kisukome = 0;
+		int gusukome = 0;
 
+		for (int i = 0; i < ABKosanArray1.length; i++) {
+			if (ABKosanArray1[i] % 2 == 0) {
+				gusu[gusukome++] = ABKosanArray1[i];
+			} else {
+				kisu[kisukome++] = ABKosanArray1[i];
+			}
+		}
+
+		for (int i = 0; i < ABKosanArray2.length; i++) {
+			if (ABKosanArray2[i] % 2 == 0) {
+				gusu[gusukome++] = ABKosanArray2[i];
+			} else {
+				kisu[kisukome++] = ABKosanArray2[i];
+			}
+		}
+
+		ABKosanArray1 = kisu;
+		ABKosanArray2 = gusu;
 
 		System.out.println("Yさん：");
 		System.out.println("はい、入れ替えました。");

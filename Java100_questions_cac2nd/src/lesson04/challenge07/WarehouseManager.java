@@ -42,9 +42,27 @@ public class WarehouseManager {
 
 		int[] ABKosanArray = new int[5];
 
+		//ここに重複チェックおよび値の代入処理を記述する
+		int intputNum = 0;//袋に入れる数字を入れるやつ
+		boolean loopFlag = false;//dowhileの条件判定用変数
 
 		//ここに重複チェックおよび値の代入処理を記述する
+		for (int i = 0; i < ABKosanArray.length; i++) {//袋に数字を入れたらiが進む
+			do {//数が重複してたらここから繰り返す
+				loopFlag = false;
+				intputNum = (int) (Math.random() * 10) % 5 + 1;//袋に入れる数字を乱数で決める
 
+				for (int j = 0; j < ABKosanArray.length; j++) {//すでに同じ数があるかの判定
+					if (ABKosanArray[j] == intputNum) {//ここでjで０～４を順に確認する
+						loopFlag = true;//被ってたらフラグをtrueにする
+						break;//forから出る
+					}
+				}
+			} while (loopFlag);//フラグがfalseならこの下　そうでないなら乱数からやり直し
+
+			ABKosanArray[i] = intputNum;//数字をぶち込む
+
+		}
 
 		System.out.println("E主任：");
 		System.out.println("AB興産の荷物の並べ替えをお願いします。\n");
@@ -61,9 +79,16 @@ public class WarehouseManager {
 		}
 		System.out.println("\nです。\n");
 
-
 		//ここに昇順にソートする処理を記述する
-
+		for (int k = 0; k < ABKosanArray.length; k++) {
+			for (int l = k + 1; l < ABKosanArray.length; l++) {
+				if (ABKosanArray[k] > ABKosanArray[l]) {
+					int temp = ABKosanArray[k];
+					ABKosanArray[k] = ABKosanArray[l];
+					ABKosanArray[l] = temp;
+				}
+			}
+		}
 
 		System.out.println("小さい順に並べ替えた後の状態は、");
 		for (int i = 0; i < ABKosanArray.length; i++) {
@@ -74,9 +99,16 @@ public class WarehouseManager {
 		}
 		System.out.println("\nです。\n");
 
-
 		//ここに降順にソートする処理を記述する
-
+		for (int m = 0; m < ABKosanArray.length; m++) {
+			for (int n = m + 1; n < ABKosanArray.length; n++) {
+				if (ABKosanArray[m] < ABKosanArray[n]) {
+					int temp = ABKosanArray[m];
+					ABKosanArray[m] = ABKosanArray[n];
+					ABKosanArray[n] = temp;
+				}
+			}
+		}
 
 		System.out.println("大きい順に並べ替えた後の状態は、");
 		for (int i = 0; i < ABKosanArray.length; i++) {

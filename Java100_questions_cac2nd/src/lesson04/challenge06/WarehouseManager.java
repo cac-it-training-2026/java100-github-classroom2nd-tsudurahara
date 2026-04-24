@@ -39,9 +39,27 @@ public class WarehouseManager {
 
 		int[] ABKosanArray = new int[5];
 
+		//ここに重複チェックおよび値の代入処理を記述する
+		int intputNum = 0;//袋に入れる数字を入れるやつ
+		boolean loopFlag = false;//dowhileの条件判定用変数
 
 		//ここに重複チェックおよび値の代入処理を記述する
+		for (int i = 0; i < ABKosanArray.length; i++) {//袋に数字を入れたらiが進む
+			do {//数が重複してたらここから繰り返す
+				loopFlag = false;
+				intputNum = (int) (Math.random() * 10) % 5 + 1;//袋に入れる数字を乱数で決める
 
+				for (int j = 0; j < ABKosanArray.length; j++) {//すでに同じ数があるかの判定
+					if (ABKosanArray[j] == intputNum) {//ここでjで０～４を順に確認する
+						loopFlag = true;//被ってたらフラグをtrueにする
+						break;//forから出る
+					}
+				}
+			} while (loopFlag);//フラグがfalseならこの下　そうでないなら乱数からやり直し
+
+			ABKosanArray[i] = intputNum;//数字をぶち込む
+
+		}
 
 		System.out.println("E主任：");
 		System.out.println("AB興産の荷物の入れ替えをお願いします。\n");
@@ -57,9 +75,18 @@ public class WarehouseManager {
 		}
 		System.out.println("\nです。\n");
 
-
 		//ここに値の入れ替え処理を記述する
-
+		for (int k = 0; k < ABKosanArray.length; k++) {
+			if (ABKosanArray[k] == 1) {
+				ABKosanArray[k] = 3;
+			} else if (ABKosanArray[k] == 2) {
+				ABKosanArray[k] = 4;
+			} else if (ABKosanArray[k] == 3) {
+				ABKosanArray[k] = 1;
+			} else if (ABKosanArray[k] == 4) {
+				ABKosanArray[k] = 2;
+			}
+		}
 
 		System.out.println("入れ替え後の状態は、");
 		for (int i = 0; i < ABKosanArray.length; i++) {
