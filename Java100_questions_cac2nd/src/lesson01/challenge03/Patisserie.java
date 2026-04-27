@@ -22,5 +22,14 @@
 package lesson01.challenge03;
 
 public class Patisserie {
+	public static void main(String[] args) {
+		int countshi = 30;
+		int countsyo = 30;
+		int countpi = 30;
+
+		System.out.println("シトロン\t\\250 ・・・" + countshi);
+		System.out.println("ショコラ\t\\280 ・・・" + countsyo);
+		System.out.println("ピスターシュ\\320 ・・・" + countpi);
+	}
 
 }

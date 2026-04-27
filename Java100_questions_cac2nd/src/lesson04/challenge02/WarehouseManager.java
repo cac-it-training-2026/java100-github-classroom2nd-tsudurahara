@@ -94,22 +94,20 @@ public class WarehouseManager {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		System.out.print("データ型を選んでください（1...文字、2...文字列、3...数値）＞");
-
-
 		//ここに入力処理を記述する。
-
+		String kata = br.readLine();
+		int Ikata = Integer.parseInt(kata);
 
 		System.out.print("\n要素数を選んでください（1...1個、2...2個、3...3個）＞");
-
-
 		//ここに入力処理を記述する。
-
+		String youso = br.readLine();
+		int Iyouso = Integer.parseInt(youso);
 
 		boolean errFlag = false;
-
-
 		//ここに入力値の範囲チェック処理を記述する。
-
+		if ((Ikata < 1 || Ikata > 3) || (Iyouso < 1 || Iyouso > 3)) {
+			errFlag = true;
+		}
 
 		if (!errFlag) {
 			System.out.println("\nZ先輩：");
@@ -126,10 +124,58 @@ public class WarehouseManager {
 			String[] strArray = null;
 			int[] intArray = null;
 
-
 			//ここに入力値による分岐および配列要素数の確定、
 			//値の代入処理を記述する。
+			if (Ikata == 1) {
+				if (Iyouso == 1) {
+					charArray = new char[1];
+					charArray[0] = 'a';
 
+				} else if (Iyouso == 2) {
+					charArray = new char[2];
+					charArray[0] = 'a';
+					charArray[1] = 'b';
+
+				} else if (Iyouso == 3) {
+					charArray = new char[3];
+					charArray[0] = 'a';
+					charArray[1] = 'b';
+					charArray[2] = 'c';
+				}
+
+			} else if (Ikata == 2) {
+				if (Iyouso == 1) {
+					strArray = new String[1];
+					strArray[0] = "abc";
+
+				} else if (Iyouso == 2) {
+					strArray = new String[2];
+					strArray[0] = "abc";
+					strArray[1] = "→";
+
+				} else if (Iyouso == 3) {
+					strArray = new String[3];
+					strArray[0] = "abc";
+					strArray[1] = "→";
+					strArray[2] = "XYZ";
+				}
+			} else if (Ikata == 3) {
+				if (Iyouso == 1) {
+					intArray = new int[1];
+					intArray[0] = 64;
+
+				} else if (Iyouso == 2) {
+					intArray = new int[2];
+					intArray[0] = 64;
+					intArray[1] = 128;
+
+				} else if (Iyouso == 3) {
+					intArray = new int[3];
+					intArray[0] = 64;
+					intArray[1] = 128;
+					intArray[2] = 256;
+				}
+			}
 
 			System.out.println("Yさん：");
 			System.out.println("...出来ました。\n");
@@ -138,10 +184,14 @@ public class WarehouseManager {
 			System.out.println("試しに最後の値を見せてください。\n");
 
 			System.out.println("Yさん：");
-
-
 			//ここに入力値による分岐および配列要素の表示処理を記述する。
-
+			if (Ikata == 1) {
+				System.out.print(charArray[charArray.length - 1]);
+			} else if (Ikata == 2) {
+				System.out.print(strArray[strArray.length - 1]);
+			} else {
+				System.out.print(intArray[intArray.length - 1]);
+			}
 
 			System.out.println("です。\n");
 
